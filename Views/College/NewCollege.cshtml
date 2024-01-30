@@ -1,0 +1,50 @@
+﻿@using App.Domain
+@model College
+
+@{
+    ViewData["Title"] = "Add a new College";
+}
+
+<div class="row-text">
+    <div class="col-md-col-8 offset-2">
+        <p>
+            <h1> Add a new College</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="NewCollege">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                </form>
+                <div class="form-group">
+                    <label asp-for="CollegeLogoUrl" class="control-label"></label>
+                    <input asp-for="CollegeLogoUrl" class="form-control"/>
+                    <span asp-validation-for="CollegeLogoUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CollegeName" class="control-label"></label>
+                    <input asp-for="CollegeName" class="form-control" />
+                    <span asp-validation-for="CollegeName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CollegeDescription" class="control-label"></label>
+                    <input asp-for="CollegeDescription" class="form-control" />
+                    <span asp-validation-for="CollegeDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CollegeProvost" class="control-label"></label>
+                    <input asp-for="CollegeProvost" class="form-control" />
+                    <span asp-validation-for="CollegeProvost" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CollegeEmail" class="control-label"></label>
+                    <input asp-for="CollegeEmail" class="form-control" />
+                    <span asp-validation-for="CollegeEmail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit"  value="Create" class="btn btn-outline-success float-right" />
+                    <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
