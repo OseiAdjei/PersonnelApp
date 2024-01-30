@@ -14,46 +14,50 @@
             <div class="col-md-5 offset-1">
                 <form asp-action="NewCollege">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group text-center">
+                        <img id="CollegeLogoUrlPreview" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CollegeLogoUrl" class="control-label"></label>
+                        <input asp-for="CollegeLogoUrl" class="form-control" />
+                        <span asp-validation-for="CollegeLogoUrl" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CollegeName" class="control-label"></label>
+                        <input asp-for="CollegeName" class="form-control" />
+                        <span asp-validation-for="CollegeName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CollegeDescription" class="control-label"></label>
+                        <input asp-for="CollegeDescription" class="form-control" />
+                        <span asp-validation-for="CollegeDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CollegeProvost" class="control-label"></label>
+                        <input asp-for="CollegeProvost" class="form-control" />
+                        <span asp-validation-for="CollegeProvost" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CollegeEmail" class="control-label"></label>
+                        <input asp-for="CollegeEmail" class="form-control" />
+                        <span asp-validation-for="CollegeEmail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
+                    </div>
                 </form>
-                <div class="form-group text-center">
-                    <img id="CollegeLogoUrlPreview"/>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CollegeLogoUrl" class="control-label"></label>
-                    <input asp-for="CollegeLogoUrl" class="form-control"/>
-                    <span asp-validation-for="CollegeLogoUrl" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CollegeName" class="control-label"></label>
-                    <input asp-for="CollegeName" class="form-control" />
-                    <span asp-validation-for="CollegeName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CollegeDescription" class="control-label"></label>
-                    <input asp-for="CollegeDescription" class="form-control" />
-                    <span asp-validation-for="CollegeDescription" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CollegeProvost" class="control-label"></label>
-                    <input asp-for="CollegeProvost" class="form-control" />
-                    <span asp-validation-for="CollegeProvost" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CollegeEmail" class="control-label"></label>
-                    <input asp-for="CollegeEmail" class="form-control" />
-                    <span asp-validation-for="CollegeEmail" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit"  value="Create" class="btn btn-outline-success float-right" />
-                    <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
-                </div>
             </div>
         </div>
     </div>
 </div>
-
                     @section Scripts{
                         <script>
+        $(document).ready(function () {
+            var output = document.getElementById('CollegeLogoUrl');
+            output.src $("CollegeLogoUrl").val();
+
+                            }
                             $("#CollegeLogoUrl").on("change", function (){
                                 var output = document.getElementById('CollegeLogoUrl');
                                 output.src $(this).val();

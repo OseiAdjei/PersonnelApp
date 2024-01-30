@@ -12,7 +12,8 @@ namespace App.Services
         }
         public void Add(College college)
         {
-            throw new NotImplementedException();
+            _context.College.Add(college);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
