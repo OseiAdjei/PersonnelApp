@@ -4,6 +4,7 @@ using App;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240130162010_UpdateInitial")]
+    partial class UpdateInitial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,10 +51,15 @@ namespace App.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("NspId")
                         .HasColumnType("int");
 
                     b.HasKey("CollegeId");
+
+                    b.HasIndex("FacultyId");
 
                     b.HasIndex("NspId");
 
@@ -102,9 +110,6 @@ namespace App.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FacultyId"));
 
-                    b.Property<int>("CollegeId")
-                        .HasColumnType("int");
-
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
@@ -131,8 +136,6 @@ namespace App.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("FacultyId");
-
-                    b.HasIndex("CollegeId");
 
                     b.HasIndex("DepartmentId");
 
@@ -181,9 +184,17 @@ namespace App.Migrations
 
             modelBuilder.Entity("App.Domain.College", b =>
                 {
+                    b.HasOne("App.Domain.Faculty", "Faculty")
+                        .WithMany("Colleges")
+                        .HasForeignKey("FacultyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("App.Domain.Nsp", null)
                         .WithMany("Colleges")
                         .HasForeignKey("NspId");
+
+                    b.Navigation("Faculty");
                 });
 
             modelBuilder.Entity("App.Domain.Department", b =>
@@ -195,12 +206,6 @@ namespace App.Migrations
 
             modelBuilder.Entity("App.Domain.Faculty", b =>
                 {
-                    b.HasOne("App.Domain.College", "College")
-                        .WithMany("Faculties")
-                        .HasForeignKey("CollegeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("App.Domain.Department", "Department")
                         .WithMany("Faculties")
                         .HasForeignKey("DepartmentId")
@@ -211,19 +216,17 @@ namespace App.Migrations
                         .WithMany("Faculties")
                         .HasForeignKey("NspId");
 
-                    b.Navigation("College");
-
                     b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("App.Domain.College", b =>
-                {
-                    b.Navigation("Faculties");
                 });
 
             modelBuilder.Entity("App.Domain.Department", b =>
                 {
                     b.Navigation("Faculties");
+                });
+
+            modelBuilder.Entity("App.Domain.Faculty", b =>
+                {
+                    b.Navigation("Colleges");
                 });
 
             modelBuilder.Entity("App.Domain.Nsp", b =>

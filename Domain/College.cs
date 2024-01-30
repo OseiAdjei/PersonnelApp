@@ -28,8 +28,6 @@ namespace App.Domain
         public string CollegeEmail { get; set;}
 
         //Relationships
-        public int FacultyId { get; set; }
-        [ForeignKey("FacultyId")]
-        public Faculty Faculty { get; set; }
+        public List<Faculty> Faculties { get; set;}
     }
 }

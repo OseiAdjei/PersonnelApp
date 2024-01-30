@@ -27,13 +27,13 @@ namespace App.Domain
         public string FacultyEmail { get; set; }
 
         //Relationships
-
-        public List<College> Colleges { get; set; }
+        public int CollegeId { get; set; }
+        public College? College { get; set; }
 
         public int DepartmentId { get; set; }
-        [ForeignKey("DepartmentId")]
         public Department Department { get; set; }
 
 
     }
 }
+    

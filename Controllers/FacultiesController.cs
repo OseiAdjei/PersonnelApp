@@ -16,5 +16,9 @@ namespace App.Controllers
             var allFaculties = await _context.Faculty.ToListAsync();
             return View(allFaculties);
         }
+        public IActionResult NewFaculty() 
+        {
+            return View();  
+        }
     }
 }

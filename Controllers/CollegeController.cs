@@ -24,11 +24,12 @@ namespace App.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> NewCollege([Bind("CollegeName,CollegeLogoUrl,CollegeDescription,CollegeProvost,CollegeEmail")]College college)
-        {
+            {
             if (!ModelState.IsValid)
             {
                 return View(college);
             }
+
             _service.Add(college);
             return RedirectToAction(nameof(Index));
         }

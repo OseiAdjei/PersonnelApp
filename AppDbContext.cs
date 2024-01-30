@@ -11,6 +11,11 @@ namespace App
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Faculty>()
+            .HasOne(f => f.College)
+            .WithMany(c => c.Faculties)
+            .HasForeignKey(f => f.CollegeId)
+            .IsRequired();
         }
         public DbSet<College> College { get; set; }
         public DbSet<Faculty> Faculty { get; set;}

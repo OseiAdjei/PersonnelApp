@@ -51,16 +51,14 @@
         </div>
     </div>
 </div>
-                    @section Scripts{
-                        <script>
+@section Scripts {
+    <script>
         $(document).ready(function () {
-            var output = document.getElementById('CollegeLogoUrl');
-            output.src $("CollegeLogoUrl").val();
-
-                            }
-                            $("#CollegeLogoUrl").on("change", function (){
-                                var output = document.getElementById('CollegeLogoUrl');
-                                output.src $(this).val();
-                            }
-                        </script>
-                    }
+            $("#CollegeLogoUrl").on("change", function () {
+                // Assuming you want to set the preview image's source
+                var imageUrl = $(this).val();
+                $("#CollegeLogoUrlPreview").attr("src", imageUrl);
+            });
+        });
+    </script>
+}
