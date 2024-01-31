@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using App.Domain;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Controllers
@@ -19,6 +20,14 @@ namespace App.Controllers
         public IActionResult NewFaculty() 
         {
             return View();  
+        }
+        [HttpPost]
+        public async Task<IActionResult> NewFaculty([Bind("FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail")] Faculty faculty)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(faculty);
+            }
         }
     }
 }
