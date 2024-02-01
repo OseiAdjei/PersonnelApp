@@ -1,0 +1,80 @@
+﻿@using App.Domain
+@model Faculty
+
+@{
+    ViewData["Title"] = "New Faculty";
+}
+<div class="row-text">
+    <div class="col-md-7 offset-2">
+        <p>
+            <h1> Add a new Faculty</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="NewFaculty">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group text-center">
+                        <div class="form-group">
+                            <label asp-for="CollegeId" class="control-label">Select College</label>
+                            @{
+                                var colleges = ViewData["Colleges"] as List<College>;
+                            }
+                            @if (colleges != null)
+                            {
+                                <select asp-for="CollegeId" asp-items="@(new SelectList(colleges, "CollegeId", "CollegeName"))" class="form-control">
+                                    <option value="">-- Select College --</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <p class="text-danger">Error: Unable to retrieve the list of colleges.</p>
+                            }
+                            <span asp-validation-for="CollegeId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="FacultyLogoUrl" class="control-label"></label>
+                            <input asp-for="FacultyLogoUrl" class="form-control" />
+                            <span asp-validation-for="FacultyLogoUrl" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FacultyName" class="control-label"></label>
+                            <input asp-for="FacultyName" class="form-control" />
+                            <span asp-validation-for="FacultyName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FacultyDescription" class="control-label"></label>
+                            <input asp-for="FacultyDescription" class="form-control" />
+                            <span asp-validation-for="FacultyDescription" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FacultyDean" class="control-label"></label>
+                            <input asp-for="FacultyDean" class="form-control" />
+                            <span asp-validation-for="FacultyDean" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FacultyEmail" class="control-label"></label>
+                            <input asp-for="FacultyEmail" class="form-control" />
+                            <span asp-validation-for="FacultyEmail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                            <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#FacultyLogoUrl").on("change", function () {
+                // Assuming you want to set the preview image's source
+                var imageUrl = $(this).val();
+                $("#FacultyLogoUrlPreview").attr("src", imageUrl);
+            });
+        });
+    </script>
+}

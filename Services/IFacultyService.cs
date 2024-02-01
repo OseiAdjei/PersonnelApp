@@ -2,7 +2,7 @@
 
 namespace App.Services
 {
-    public interface IFacultiesService
+    public interface IFacultyService
     {
         Task<IEnumerable<Faculty>> GetAll();
 

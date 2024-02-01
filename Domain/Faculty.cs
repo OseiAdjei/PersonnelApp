@@ -6,6 +6,7 @@ namespace App.Domain
     public class Faculty
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FacultyId { get; set; }
 
         [Required]
@@ -31,7 +32,7 @@ namespace App.Domain
         public College? College { get; set; }
 
         public int DepartmentId { get; set; }
-        public Department Department { get; set; }
+        public Department? Department { get; set; }
 
 
     }

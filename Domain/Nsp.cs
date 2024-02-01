@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Domain
 {
     public class Nsp
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NspId { get; set; }
 
         [Required]
@@ -23,6 +25,7 @@ namespace App.Domain
         public string NspName { get; set; }
 
         [Required]
+        [Display(Name ="Email:")]
         [DataType(DataType.EmailAddress)]
         public string NspEmail { get; set; }
 

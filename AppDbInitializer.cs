@@ -26,8 +26,7 @@
 //                            CollegeName = "College of Science (CoS)",
 //                            CollegeEmail = "cos@knust.edu.gh",
 //                            CollegeProvost = "Dr. Daniel Quansah",
-//                            CollegeDescription = "This is a sample history of department",
-//                            FacultyId = 2401
+//                            CollegeDescription = "This is a sample history of department"
 //                        };
 //                        new College()
 //                        {
@@ -36,8 +35,7 @@
 //                            CollegeName = "College of Engineering (CoE)",
 //                            CollegeEmail = "coe@knust.edu.gh",
 //                            CollegeProvost = "Dr. Daniel Quansah",
-//                            CollegeDescription = "This is a sample history of department",
-//                            FacultyId = 2402,
+//                            CollegeDescription = "This is a sample history of department"
 //                        };
 //                        new College()
 //                        {
@@ -46,8 +44,7 @@
 //                            CollegeName = "College of Humanities and Social Sciences (CoHSS)",
 //                            CollegeEmail = "cos@knust.edu.gh",
 //                            CollegeProvost = "Dr. Daniel Quansah",
-//                            CollegeDescription = "This is a sample history of department",
-//                            FacultyId = 2403
+//                            CollegeDescription = "This is a sample history of department"
 //                        };
 //                        context.College.AddRange(colleges);
 //                        context.SaveChanges();
@@ -96,25 +93,25 @@
 //                    if (!context.Department.Any())
 //                    {
 //                        var departments = new List<Department>();
-//                        { 
-//                        new Department()
 //                        {
-//                            DepartmentId = 2501,
-//                            DepartmentLogoUrl = "https://www.freepik.com/free-photos-vectors/background",
-//                            DepartmentName = "Department of Physics",
-//                            DepartmentEmail = "physics.cos@knust.edu.gh",
-//                            DepartmentHod = "Dr. Daniel Quansah",
-//                            DepartmentDescription = "This is a sample history of department"
-//                        };
-//                        new Department()
-//                        {
-//                            DepartmentId = 2502,
-//                            DepartmentLogoUrl = "https://www.freepik.com/free-photos-vectors/background",
-//                            DepartmentName = "Department of Electrical Engineering",
-//                            DepartmentEmail = "eeng.coe@knust.edu.gh",
-//                            DepartmentHod = " Mr. Daniel Quansah",
-//                            DepartmentDescription = "This is a sample history of department"
-//                        };
+//                            new Department()
+//                            {
+//                                DepartmentId = 2501,
+//                                DepartmentLogoUrl = "https://www.freepik.com/free-photos-vectors/background",
+//                                DepartmentName = "Department of Physics",
+//                                DepartmentEmail = "physics.cos@knust.edu.gh",
+//                                DepartmentHod = "Dr. Daniel Quansah",
+//                                DepartmentDescription = "This is a sample history of department"
+//                            };
+//                            new Department()
+//                            {
+//                                DepartmentId = 2502,
+//                                DepartmentLogoUrl = "https://www.freepik.com/free-photos-vectors/background",
+//                                DepartmentName = "Department of Electrical Engineering",
+//                                DepartmentEmail = "eeng.coe@knust.edu.gh",
+//                                DepartmentHod = " Mr. Daniel Quansah",
+//                                DepartmentDescription = "This is a sample history of department"
+//                            };
 //                            new Department()
 //                            {
 //                                DepartmentId = 2503,

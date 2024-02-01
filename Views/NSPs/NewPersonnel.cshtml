@@ -1,0 +1,83 @@
+﻿@using App.Domain
+@model Nsp
+
+@{
+    ViewData["Title"] = "Add a new Personnel";
+}
+<style>
+    body {
+        background-color: #fff;
+        color: #000000;
+    }
+
+    .btn-login {
+        background-color: #000000;
+        color: #fff;
+    }
+</style>
+
+<div class="container mt-5">
+  <div class="col-md-9 mx-auto">
+     <div class="card">
+       <div class="card-body">
+           <h2 class="text-center offset-6">@ViewData["Title"]</h2>
+            <div class="row">
+                <div class="col-md-7">
+                    <img src="/css/KNUSTNSP.png" alt="Your Image" class="img-fluid rounded" style="width: 120%; height: auto;">
+                </div>
+                <div class="col-md-4 offset-0">
+          <form asp-action="NewPersonnel">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="NspNumber" class="control-label"></label>
+                            <input asp-for="NspNumber" class="form-control" />
+                            <span asp-validation-for="NspNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NspPicUrl" class="control-label"></label>
+                            <input asp-for="NspPicUrl" class="form-control" />
+                            <span asp-validation-for="NspPicUrl" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NspName" class="control-label"></label>
+                            <input asp-for="NspName" class="form-control" />
+                            <span asp-validation-for="NspName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NspBio" class="control-label"></label>
+                            <input asp-for="NspBio" class="form-control" />
+                            <span asp-validation-for="NspBio" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NspEmail" class="control-label"></label>
+                            <input asp-for="NspEmail" class="form-control" />
+                            <span asp-validation-for="NspEmail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="NspPhone" class="control-label"></label>
+                            <input asp-for="NspPhone" class="form-control" />
+                            <span asp-validation-for="NspPhone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                            <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
+                        </div>
+          </form>
+                </div>
+
+       </div>
+     </div>
+  </div>
+</div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#NspPicUrl").on("change", function () {
+                // Assuming you want to set the preview image's source
+                var imageUrl = $(this).val();
+                $("#NspPicUrlPreview").attr("src", imageUrl);
+            });
+        });
+    </script>
+}

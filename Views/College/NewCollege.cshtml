@@ -15,8 +15,6 @@
                 <form asp-action="NewCollege">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group text-center">
-                        <img id="CollegeLogoUrlPreview" />
-                    </div>
                     <div class="form-group">
                         <label asp-for="CollegeLogoUrl" class="control-label"></label>
                         <input asp-for="CollegeLogoUrl" class="form-control" />
@@ -45,6 +43,7 @@
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-outline-success float-right" />
                         <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
+                    </div>
                     </div>
                 </form>
             </div>

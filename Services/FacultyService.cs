@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace App.Services
 {
-    public class FacultiesService : IFacultiesService
+    public class FacultyService : IFacultyService
     {
         private readonly AppDbContext _context;
-        public FacultiesService(AppDbContext context)
+        public FacultyService(AppDbContext context)
         {
             _context = context;
         }

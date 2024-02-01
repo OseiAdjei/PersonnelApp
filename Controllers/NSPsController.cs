@@ -18,5 +18,19 @@ namespace App.Controllers
             var nsps = await _context.Nsp.ToListAsync();
             return View(nsps);
         }
+        public IActionResult NewPersonnel()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> NewPersonnel([Bind("NspName,NspNumber,NspPicUrl,NspBio,NspPhone,NspEmail")]Nsp nsp)
+        {
+            if(ModelState.IsValid)
+            {
+                return View(nsp);
+            }
+            _context.Add(nsp);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
