@@ -29,7 +29,9 @@ namespace App.Domain
         public string? DepartmentEmail { get; set; }
 
         //Relationships
-        public List<Faculty>? Faculties { get; set; }
+        public int FacultyId { get; set; }
+        public Faculty Faculty { get; set; }
 
+        public List<Nsp> Nsps { get; set; }
     }
 }

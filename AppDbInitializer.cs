@@ -21,12 +21,12 @@
 //                    {
 //                        new College()
 //                        {
-//                            CollegeId = 2301,
-//                            CollegeLogoUrl = "https://www.freepik.com/free-photos-vectors/background",
-//                            CollegeName = "College of Science (CoS)",
-//                            CollegeEmail = "cos@knust.edu.gh",
-//                            CollegeProvost = "Dr. Daniel Quansah",
-//                            CollegeDescription = "This is a sample history of department"
+//                            CollegeName = "Sample College",
+//                            CollegeEmail = "college@example.com",
+//                            CollegeProvost = "Provost Name",
+//                            CollegeDescription = "Sample College Description",
+//                            CollegeLogoUrl = "college-logo.jpg",
+//                            NspId = 1 // Assuming the NspId foreign key
 //                        };
 //                        new College()
 //                        {

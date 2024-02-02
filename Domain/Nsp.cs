@@ -25,7 +25,7 @@ namespace App.Domain
         public string NspName { get; set; }
 
         [Required]
-        [Display(Name ="Email:")]
+        [Display(Name ="Email")]
         [DataType(DataType.EmailAddress)]
         public string NspEmail { get; set; }
 
@@ -35,8 +35,13 @@ namespace App.Domain
         public string NspPhone { get; set; }
 
         //Relationships
-        public List<College> Colleges { get; set; }
-        public List<Faculty> Faculties { get; set; }
-        public List<Department> Departments { get; set; }
+        public int CollegeId { get; set; }
+        public College College { get; set; }
+
+        public int FacultyId {  get; set; }
+        public Faculty Faculty { get; set; }   
+        
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
     }
 }
