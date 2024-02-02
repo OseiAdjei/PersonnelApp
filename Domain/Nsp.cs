@@ -33,15 +33,5 @@ namespace App.Domain
         [Display(Name ="Phone Contact")]
         [MaxLength(9)]
         public string NspPhone { get; set; }
-
-        //Relationships
-        public int CollegeId { get; set; }
-        public College College { get; set; }
-
-        public int FacultyId {  get; set; }
-        public Faculty Faculty { get; set; }   
-        
-        public int DepartmentId { get; set; }
-        public Department Department { get; set; }
     }
 }

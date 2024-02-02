@@ -4,17 +4,17 @@
 @{
     ViewData["Title"] = "Add a new Personnel";
 }
-<style>
-    body {
-        background-color: #fff;
-        color: #000000;
-    }
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-    .btn-login {
-        background-color: #000000;
-        color: #fff;
-    }
-</style>
+@section HeadStyles {
+    <style>
+        nav {
+            display: none;
+        }
+    </style>
+}
 
 <div class="container mt-5">
   <div class="col-md-9 mx-auto">
