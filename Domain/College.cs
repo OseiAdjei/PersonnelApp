@@ -29,7 +29,7 @@ namespace App.Domain
         public string? CollegeEmail { get; set;}
 
         //Relationships
-        public List<Faculty> Faculties { get; set;}
-        public List<Nsp> Nsps { get; set;}
+        public List<Faculty>? Faculties { get; set;}
+        public List<Nsp>? Nsps { get; set;}
     }
 }

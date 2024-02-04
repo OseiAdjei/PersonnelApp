@@ -32,6 +32,6 @@ namespace App.Domain
         public int FacultyId { get; set; }
         public Faculty Faculty { get; set; }
 
-        public List<Nsp> Nsps { get; set; }
+        public List<Nsp>? Nsps { get; set; }
     }
 }

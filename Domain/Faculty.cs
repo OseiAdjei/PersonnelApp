@@ -33,7 +33,7 @@ namespace App.Domain
 
         public List<Department> Departments { get; set; }
 
-        public List<Nsp> Nsps { get; set; }
+        public List<Nsp>? Nsps { get; set; }
 
 
     }
