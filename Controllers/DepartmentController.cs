@@ -23,7 +23,7 @@ namespace App.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> NewDepartment([Bind("DepartmentName,DepartmnentLogoUrl,DepartmentHod,DepartmentDescription,DepartmentEmail,")] Department department)
-        {
+            {
             if(!ModelState.IsValid)
             {
                 return View(department);

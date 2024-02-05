@@ -9,8 +9,11 @@ namespace App.Controllers
     public class FacultyController : Controller
     {
         private readonly AppDbContext _context;
-        public FacultyController(AppDbContext context)
+
+        private readonly ICollegesService _service;
+        public FacultyController(AppDbContext context, ICollegesService service)
         {
+            _service = service;
             _context = context;
         }
         public async Task<IActionResult> Index()
@@ -25,8 +28,7 @@ namespace App.Controllers
         [HttpPost]
         public async Task<IActionResult> NewFaculty([Bind("FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail")] Faculty faculty)
         {
-            var colleges = _context.College.ToList();
-
+            var colleges = await _service.GetAll();
             ViewData["Colleges"] = colleges;
 
             if(!ModelState.IsValid)
@@ -34,6 +36,7 @@ namespace App.Controllers
                 return View(faculty);
             }
             _context.Add(faculty);
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
