@@ -17,7 +17,7 @@
                         <div class="form-group">
                             <label asp-for="College" class="control-label">Select College</label>
                             @{
-                                var colleges = ViewData["Colleges"] as List<College>;
+                                var colleges = ViewData["Colleges"] as IEnumerable<College>;
                             }
                             @if (colleges != null)
                             {
@@ -27,7 +27,7 @@
                             }
                             else
                             {
-                                <p class="text-danger">Error: Unable to retrieve the list of colleges.</p>
+                                <p class="text-danger">@ViewBag.ErrorMessage</p>
                             }
                             <span asp-validation-for="CollegeId" class="text-danger"></span>
                         </div>

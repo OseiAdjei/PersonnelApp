@@ -28,17 +28,25 @@ namespace App.Controllers
         [HttpPost]
         public async Task<IActionResult> NewFaculty([Bind("FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail")] Faculty faculty)
         {
-            var colleges = await _service.GetAll();
-            ViewData["Colleges"] = colleges;
-
-            if(!ModelState.IsValid)
+            try
             {
+                var colleges = await _service.GetAll();
+                ViewData["Colleges"] = colleges;
+
+                if (!ModelState.IsValid)
+                {
+                    return View(faculty);
+                }
+                _context.Add(faculty);
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "AN error occured whilst trying to retrieve the list of Colleges";
                 return View(faculty);
             }
-            _context.Add(faculty);
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
     }
 }

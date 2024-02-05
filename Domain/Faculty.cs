@@ -29,10 +29,7 @@ namespace App.Domain
 
         //Relationships
         public int CollegeId { get; set; }
-        public College College { get; set; }
-
-        public List<Department> Departments { get; set; }
-
+        public IEnumerable<College> College { get; set; }
         public List<Nsp>? Nsps { get; set; }
 
 
