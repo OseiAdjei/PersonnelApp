@@ -4,13 +4,16 @@
 @{
     ViewData["Title"] = "New Faculty";
 }
-<div class="row-text">
-    <div class="col-md-7 offset-2">
-        <p>
-            <h1> Add a new Faculty</h1>
-        </p>
-        <div class="row">
-            <div class="col-md-8 offset-2">
+<div class="container mt-5">
+    <div class="col-md-9 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center offset-6">@ViewData["Title"]</h2>
+                <div class="row">
+                    <div class="col-md-7">
+                        <img src="/css/facultydrctry.png" alt="Your Image" class="img-fluid rounded" style="width: 120%; height: auto;">
+                    </div>
+                    <div class="col-md-4 offset-0">
                 <form asp-action="NewFaculty">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group text-center">
@@ -58,11 +61,13 @@
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Create" class="btn btn-outline-success float-right" />
-                            <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
+                                    <a class="btn btn-outline-secondary mb-4" asp-action="Index"> Show all </a>
                         </div>
                     </div>
                 </form>
             </div>
+            </div>
+        </div>
         </div>
     </div>
 </div>
