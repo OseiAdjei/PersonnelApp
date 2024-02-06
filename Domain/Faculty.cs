@@ -16,6 +16,7 @@ namespace App.Domain
         [Display(Name ="About")]
         public string FacultyDescription { get; set; }
 
+        [Display(Name ="Logo")]
         public string? FacultyLogoUrl { get; set; }
 
         [Required]

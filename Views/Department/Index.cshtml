@@ -5,8 +5,12 @@
     ViewData["Title"] = "Departments";
 }
 
+<div class="container mt-4">
+    <div class="col-md-12 mx-auto">
+<div class="card">
+    <div class="card-body">
 <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-15 offset-md-0">
         @if (Model != null && Model.Any())
         {
             <table class="table">
@@ -25,7 +29,7 @@
                             <td class="align-middle">
                                 @if (!string.IsNullOrEmpty(item.DepartmentLogoUrl))
                                 {
-                                    <img class="rounded-circle" src="@item.DepartmentLogoUrl" alt="@item.DepartmentName" style="max-width: 100px" />
+                                    <img class="rounded-circle" src="@item.DepartmentLogoUrl" alt="@item.DepartmentName" style="max-width: 80px" />
                                 }
                             </td>
                             <td class="align-middle">
@@ -59,12 +63,16 @@
         }
         else
         {
-            <p>No colleges available.</p>
+            <p>No departments available.</p>
         }
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
 </div>
 <div style="position: fixed; left: 130px; bottom: 120px;" class="text-white">
-    <a asp-controller="College" asp-action="NewCollege" class="btn btn-success">
+    <a asp-controller="Department" asp-action="NewDepartment" class="btn btn-success">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
         </svg> Add New

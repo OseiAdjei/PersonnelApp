@@ -5,8 +5,12 @@
     ViewData["Title"] = "Faculties";
 }
 
-<div class="row">
-    <div class="col-md-10 offset-md-1">
+<div class="container mt-3">
+    <div class="col-md-12 mx-auto">
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 offset-md-0">
         @if (Model != null && Model.Any())
         {
             <table class="table">
@@ -25,7 +29,7 @@
                             <td class="align-middle">
                                 @if (!string.IsNullOrEmpty(item.FacultyLogoUrl))
                                 {
-                                    <img class="rounded-circle" src="@item.FacultyLogoUrl" alt="@item.FacultyName" style="max-width: 100px" />
+                                    <img class="rounded-circle" src="@item.FacultyLogoUrl" alt="@item.FacultyName" style="max-width: 80px" />
                                 }
                             </td>
                             <td class="align-middle">
@@ -60,8 +64,12 @@
         }
         else
         {
-            <p>No colleges available.</p>
+            <p>No faculties available.</p>
         }
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
 </div>
 <div style="position: fixed; left: 130px; bottom: 120px;" class="text-white">
