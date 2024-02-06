@@ -30,7 +30,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "NSPs/NewPersonnel",
+      "launchUrl": "Faculty",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

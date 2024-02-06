@@ -15,13 +15,18 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group text-center">
                         <div class="form-group">
+                            <label asp-for="FacultyLogoUrl" class="control-label"></label>
+                            <input asp-for="FacultyLogoUrl" class="form-control" />
+                            <span asp-validation-for="FacultyLogoUrl" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
                             <label asp-for="College" class="control-label">Select College</label>
                             @{
                                 var colleges = ViewData["Colleges"] as IEnumerable<College>;
                             }
                             @if (colleges != null)
                             {
-                                <select asp-for="CollegeId" asp-items="@(new SelectList(colleges, "CollegeId", "CollegeName"))" class="form-control">
+                                <select asp-for="CollegeId" asp-items="@(new SelectList(colleges, "CollegeId","CollegeName"))" class="form-control">
                                     <option value="">-- Select College --</option>
                                 </select>
                             }
@@ -30,12 +35,6 @@
                                 <p class="text-danger">@ViewBag.ErrorMessage</p>
                             }
                             <span asp-validation-for="CollegeId" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label asp-for="FacultyLogoUrl" class="control-label"></label>
-                            <input asp-for="FacultyLogoUrl" class="form-control" />
-                            <span asp-validation-for="FacultyLogoUrl" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="FacultyName" class="control-label"></label>

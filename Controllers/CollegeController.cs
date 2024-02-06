@@ -6,7 +6,7 @@ namespace App.Controllers
 {
     public class CollegeController : Controller
     {
-        private readonly ICollegesService _service;
+        public readonly ICollegesService _service;
 
         public CollegeController(ICollegesService service)
         {

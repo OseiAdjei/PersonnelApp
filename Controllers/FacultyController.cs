@@ -10,10 +10,8 @@ namespace App.Controllers
     {
         private readonly AppDbContext _context;
 
-        private readonly ICollegesService _service;
-        public FacultyController(AppDbContext context, ICollegesService service)
+        public FacultyController(AppDbContext context)
         {
-            _service = service;
             _context = context;
         }
         public async Task<IActionResult> Index()
@@ -30,7 +28,7 @@ namespace App.Controllers
         {
             try
             {
-                var colleges = await _service.GetAll();
+                var colleges = await _context.College.ToListAsync();
                 ViewData["Colleges"] = colleges;
 
                 if (!ModelState.IsValid)
