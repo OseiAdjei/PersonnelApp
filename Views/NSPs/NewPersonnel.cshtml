@@ -17,6 +17,54 @@
                 <div class="col-md-4 offset-0">
           <form asp-action="NewPersonnel">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                @{
+                                    var colleges = ViewData["Colleges"] as IEnumerable<College>;
+                                }
+                                @if (colleges.Count() != 0)
+                                {
+                                    <select asp-for="CollegeId" asp-items="@(new SelectList(colleges, "CollegeId","CollegeName"))" class="form-control">
+                                        <option value="">-- Select College --</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <p class="text-danger">@ViewBag.ErrorMessage</p>
+                                }
+                                <span asp-validation-for="CollegeId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                @{
+                                    var faculties = ViewData["Faculties"] as IEnumerable<Faculty>;
+                                }
+                                @if (faculties.Count() != 0)
+                                {
+                                    <select asp-for="FacultyId" asp-items="@(new SelectList(faculties, "FacultyId","FacultyName"))" class="form-control">
+                                        <option value="">-- Select Faculty --</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <p class="text-danger">@ViewBag.ErrorMessage</p>
+                                }
+                                <span asp-validation-for="FacultyId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                @{
+                                    var departments = ViewData["Departments"] as IEnumerable<Department>;
+                                }
+                                @if (departments.Count() != 0)
+                                {
+                                    <select asp-for="DepartmentId" asp-items="@(new SelectList(departments, "DepartmentId","DepartmentName"))" class="form-control">
+                                        <option value="">-- Select Faculty --</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <p class="text-danger">@ViewBag.ErrorMessage</p>
+                                }
+                                <span asp-validation-for="FacultyId" class="text-danger"></span>
+                            </div>
                         <div class="form-group">
                             <label asp-for="NspNumber" class="control-label"></label>
                             <input asp-for="NspNumber" class="form-control" />

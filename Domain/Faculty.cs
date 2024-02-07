@@ -30,7 +30,7 @@ namespace App.Domain
 
         //Relationships
         public int CollegeId { get; set; }
-        public College College { get; set; }
+        public College? College { get; set; }
         public List<Nsp>? Nsps { get; set; }
 
 

@@ -17,19 +17,36 @@ namespace App.Controllers
             var allDepartments = await _context.Department.ToListAsync();
             return View(allDepartments);
         }
-        public IActionResult NewDepartment()
+        [HttpGet]
+        public async Task<IActionResult> NewDepartment()
         {
+            var faculties = await _context.Faculty.ToListAsync();
+            ViewData["Faculties"] = faculties;
+
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> NewDepartment([Bind("DepartmentName,DepartmnentLogoUrl,DepartmentHod,DepartmentDescription,DepartmentEmail,")] Department department)
+        public async Task<IActionResult> NewDepartment([Bind("DepartmentName,DepartmnentLogoUrl,DepartmentHod,DepartmentDescription," +
+            "DepartmentEmail,FacultyId")] Department department)
             {
-            if(!ModelState.IsValid)
+            try
             {
+                var faculties = await _context.Faculty.ToListAsync();
+                ViewData["Faculties"] = faculties;
+
+                if (!ModelState.IsValid)
+                {
+                    return View(department);
+                }
+                _context.Department.Add(department);
+                await _context.SaveChangesAsync();
+                return RedirectToAction((nameof(Index)));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "AN error occured whilst trying to retrieve the list of Faculties";
                 return View(department);
             }
-            _context.Add(department);
-            return RedirectToAction((nameof(Index)));
         }
     }
 }

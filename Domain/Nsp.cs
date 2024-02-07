@@ -33,5 +33,9 @@ namespace App.Domain
         [Display(Name ="Phone Contact")]
         [MaxLength(9)]
         public string NspPhone { get; set; }
+
+        public int CollegeId { get; set; }
+        public int FacultyId { get; set; }
+        public int DepartmentId { get; set; }
     }
 }

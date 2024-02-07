@@ -19,12 +19,16 @@ namespace App.Controllers
             var allFaculties =await _context.Faculty.ToListAsync();
             return View(allFaculties);
         }
-        public IActionResult NewFaculty() 
+        [HttpGet]
+        public async Task<IActionResult> NewFaculty() 
         {
+            var colleges = await _context.College.ToListAsync();
+            ViewData["Colleges"] = colleges;
+
             return View();  
         }
         [HttpPost]
-        public async Task<IActionResult> NewFaculty([Bind("FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail")] Faculty faculty)
+        public async Task<IActionResult> NewFaculty([Bind("FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail,CollegeId")] Faculty faculty)
         {
             try
             {
@@ -35,8 +39,8 @@ namespace App.Controllers
                 {
                     return View(faculty);
                 }
-                _context.Add(faculty);
-
+                
+                _context.Faculty.Add(faculty);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

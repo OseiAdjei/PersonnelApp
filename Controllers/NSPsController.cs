@@ -15,22 +15,51 @@ namespace App.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var nsps = await _context.Nsp.ToListAsync();
-            return View(nsps);
+            var allnsps = await _context.Nsp.ToListAsync();
+            return View(allnsps);
         }
-        public IActionResult NewPersonnel()
+
+        [HttpGet]
+        public async Task<IActionResult> NewPersonnel()
         {
+            var colleges = await _context.College.ToListAsync();
+            ViewData["Colleges"] = colleges;
+
+            var departments = await _context.Department.ToListAsync();
+            ViewData["Departments"] = departments;
+
+            var faculties = await _context.Faculty.ToListAsync();
+            ViewData["Faculties"] = faculties;
+            
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> NewPersonnel([Bind("NspName,NspNumber,NspPicUrl,NspBio,NspPhone,NspEmail")]Nsp nsp)
+        public async Task<IActionResult> NewPersonnel([Bind("NspId,NspName,NspNumber,NspPicUrl,NspBio,NspPhone,NspEmail,CollegeId,FacultyId,DepartmentId")]Nsp nsp)
         {
-            if(ModelState.IsValid)
+            try
+            {
+                var colleges = await _context.College.ToListAsync();
+                ViewData["Colleges"] = colleges;
+
+                var departments = await _context.Department.ToListAsync();
+                ViewData["Departments"] = departments;
+
+                var faculties = await _context.Faculty.ToListAsync();
+                ViewData["Faculties"] = faculties;
+
+                if (!ModelState.IsValid)
             {
                 return View(nsp);
             }
-            _context.Add(nsp);
+            _context.Nsp.Add(nsp);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
     }
 }
