@@ -4,10 +4,10 @@ namespace App.Services
 {
     public interface ICollegesService
     {
-        Task<IEnumerable<College>> GetAll();
+        Task<IEnumerable<College>> GetAllAsync();
 
-        College GetById(int id);    
-        void Add (College college);
+        Task<College> GetByIdAsync(int id);    
+        Task AddAsync(College college);
         College Update (int  id, College newCollege);
         void Delete (int id);
     }

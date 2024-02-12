@@ -14,7 +14,7 @@ namespace App.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var allColleges =await _service.GetAll();
+            var allColleges =await _service.GetAllAsync();
             return View(allColleges);
         }
 
@@ -30,8 +30,16 @@ namespace App.Controllers
                 return View(college);
             }
 
-            _service.Add(college);
+            await _service.AddAsync (college);
             return RedirectToAction(nameof(Index));
         }
+
+        //public async Task<IActionResult> CollegeDetails(int id)
+        //{
+        //    var collegeDetails = await _service.AddAsync(id);
+
+        //    if (collegeDetails == null) return View("Empty");
+        //    return View(collegeDetails);
+        //}
     }
 }

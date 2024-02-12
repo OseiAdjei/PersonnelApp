@@ -56,7 +56,7 @@
                                 @if (departments.Count() != 0)
                                 {
                                     <select asp-for="DepartmentId" asp-items="@(new SelectList(departments, "DepartmentId","DepartmentName"))" class="form-control">
-                                        <option value="">-- Select Faculty --</option>
+                                        <option value="">-- Select Department --</option>
                                     </select>
                                 }
                                 else

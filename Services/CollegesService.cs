@@ -10,10 +10,10 @@ namespace App.Services
         {
                 _context = context;
         }
-        public void Add(College college)
+        public async Task AddAsync(College college)
         {
-            _context.College.Add(college);
-            _context.SaveChanges();
+            await _context.College.AddAsync(college);
+             await _context.SaveChangesAsync();
         }
 
         public void Delete(int id)
@@ -27,7 +27,17 @@ namespace App.Services
             return result;
         }
 
-        public College GetById(int id)
+        public Task<IEnumerable<College>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public College GetByIdA(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<College> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
