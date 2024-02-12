@@ -34,12 +34,12 @@ namespace App.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //public async Task<IActionResult> CollegeDetails(int id)
-        //{
-        //    var collegeDetails = await _service.AddAsync(id);
+        public async Task<IActionResult> Details(int id)
+        {
+            var collegeDetails = await _service.GetByIdAsync(id);
 
-        //    if (collegeDetails == null) return View("Empty");
-        //    return View(collegeDetails);
-        //}
+            if (collegeDetails == null) return View("Empty");
+            return View(collegeDetails);
+        }
     }
 }
