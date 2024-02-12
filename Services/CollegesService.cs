@@ -21,25 +21,16 @@ namespace App.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<College>> GetAll()
+        public async Task<IEnumerable<College>> GetAllAsync()
         {
             var result = await _context.College.ToListAsync();
             return result;
         }
 
-        public Task<IEnumerable<College>> GetAllAsync()
+        public async Task<College> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public College GetByIdA(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<College> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
+            var result = await _context.College.FirstOrDefaultAsync(n => n.CollegeId == id);
+            return result;
         }
 
         public College Update(int id, College newCollege)
