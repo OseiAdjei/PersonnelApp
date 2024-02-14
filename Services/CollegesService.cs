@@ -32,7 +32,6 @@ namespace App.Services
             var result = await _context.College.FirstOrDefaultAsync(n => n.CollegeId == id);
             return result;
         }
-
         public College Update(int id, College newCollege)
         {
             throw new NotImplementedException();

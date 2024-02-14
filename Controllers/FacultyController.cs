@@ -9,9 +9,11 @@ namespace App.Controllers
     public class FacultyController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IFacultyService _facultyService;
 
-        public FacultyController(AppDbContext context)
+        public FacultyController(AppDbContext context, IFacultyService facultyService)
         {
+            _facultyService = facultyService;
             _context = context;
         }
         public async Task<IActionResult> Index()
@@ -49,6 +51,11 @@ namespace App.Controllers
                 ViewBag.ErrorMessage = "AN error occured whilst trying to retrieve the list of Colleges";
                 return View(faculty);
             }
+        }
+        public async Task<IActionResult> Details(int id)
+        {
+            var facultyDetails = await _facultyService.GetByIdAsync(id);
+            return View(facultyDetails);
         }
     }
 }
