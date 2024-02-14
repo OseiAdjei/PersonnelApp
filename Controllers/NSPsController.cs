@@ -12,7 +12,7 @@ namespace App.Controllers
         private readonly INSPService _service;
 
         public NSPsController(AppDbContext context, INSPService service)
-        {
+        { 
             _context = context;
             _service = service;
         }
@@ -66,20 +66,10 @@ namespace App.Controllers
         }
         public async Task<IActionResult> Details(int id)
         {
-            try
-            {
                 var nspDetails = await _service.GetByIdAsync(id);
 
-                if (nspDetails == null)
-                    return View("Empty");
-
+                if (nspDetails == null) return View("Empty");
                 return View(nspDetails);
-            }
-            catch (Exception ex)
-            {
-                ViewBag.ErrorMessage = ex.Message;
-                return View("Error"); 
-            }
         }
     }
 }

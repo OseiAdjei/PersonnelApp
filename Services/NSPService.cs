@@ -11,17 +11,6 @@ namespace App.Services
             _context = context;
         }
 
-        public Task AddAsync(Nsp nsp)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<Nsp>> GetAllAsync()
-        {
-            var result = await _context.Nsp.ToListAsync();
-            return result;
-        }
-
         public async Task<Nsp> GetByIdAsync(int id)
         {
             var result = await _context.Nsp.FirstOrDefaultAsync(n => n.NspId == id);
