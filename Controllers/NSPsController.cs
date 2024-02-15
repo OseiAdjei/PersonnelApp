@@ -62,10 +62,20 @@ namespace App.Controllers
                 return View();
             }
         }
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details_Personnel(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var nsp = await _context.Nsp.FindAsync(id);
+            if (nsp == null)
+            {
+                return NotFound();
+            }
+
+            return View(nsp);
         }
-
     }
 }
