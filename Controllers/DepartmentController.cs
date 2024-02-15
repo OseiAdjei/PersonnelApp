@@ -48,5 +48,18 @@ namespace App.Controllers
                 return View(department);
             }
         }
+        public async Task<IActionResult> Details_Department(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var department = await _context.Department.FindAsync(id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+            return View (department);
+        }
     }
 }

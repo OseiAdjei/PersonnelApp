@@ -1,0 +1,47 @@
+﻿@model App.Domain.Department
+
+<div class="row-text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Details for @Model.DepartmentName</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div class="form-group">
+                    <label asp-for="DepartmentLogoUrl" class="control-label"></label>
+                    <img id="DepartmentLogoUrlPreview" src="@Model.DepartmentLogoUrl" class="form-control" style="max-width: 50%;" readonly />
+                </div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentName" class="control-label"></label>
+                                <input asp-for="DepartmentName" class="form-control" readonly />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentDescription" class="control-label"></label>
+                                <input asp-for="DepartmentDescription" class="form-control" readonly />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentHod" class="control-label"></label>
+                                <input asp-for="DepartmentHod" class="form-control" readonly />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentEmail" class="control-label"></label>
+                                <input asp-for="DepartmentEmail" class="form-control" readonly />
+                            </div>
+                <div class="form-group">
+                  <a class="btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.DepartmentId">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                   <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                            </svg> Edit
+                  </a>
+                            <a class="btn btn-outline-secondary" asp-action="Index">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 16 16">
+                            <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A2 2 0 0 0 8 6c-.532 0-1.016.208-1.375.547M14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0" />
+                            </svg> Show all
+                            </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
