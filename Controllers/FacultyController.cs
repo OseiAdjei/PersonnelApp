@@ -52,12 +52,5 @@ namespace App.Controllers
                 return View(faculty);
             }
         }
-        public async Task<IActionResult> Details(int id)
-        {
-            var facultyDetails = await _facultyService.GetByIdAsync(id);
-            if (facultyDetails == null) return View("Empty");
-
-            return View(facultyDetails);
-        }
     }
 }

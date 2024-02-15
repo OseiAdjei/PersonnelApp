@@ -1,15 +1,14 @@
 ﻿@using App.Domain
 @model Faculty
 
-<div class="container mt-5">
-    <div class="col-md-9 mx-auto">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
 
-                    <div class="col-md-4 offset-0">
-                        <form asp-action="NewFaculty" asp-controller="Faculty">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row-text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Details for @Model.FacultyName</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
                             <div class="form-group text-center">
                                 <div class="form-group">
                                     @{
@@ -29,27 +28,27 @@
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="FacultyLogoUrl" class="control-label"></label>
-                                    <input asp-for="FacultyLogoUrl" class="form-control" />
+                                    <input asp-for="FacultyLogoUrl" class="form-control" readonly/>
                                     <span asp-validation-for="FacultyLogoUrl" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="FacultyName" class="control-label"></label>
-                                    <input asp-for="FacultyName" class="form-control" />
+                                    <input asp-for="FacultyName" class="form-control" readonly />
                                     <span asp-validation-for="FacultyName" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="FacultyDescription" class="control-label"></label>
-                                    <input asp-for="FacultyDescription" class="form-control" />
+                                    <input asp-for="FacultyDescription" class="form-control" readonly />
                                     <span asp-validation-for="FacultyDescription" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="FacultyDean" class="control-label"></label>
-                                    <input asp-for="FacultyDean" class="form-control" />
+                                    <input asp-for="FacultyDean" class="form-control" readonly />
                                     <span asp-validation-for="FacultyDean" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="FacultyEmail" class="control-label"></label>
-                                    <input asp-for="FacultyEmail" class="form-control" />
+                                    <input asp-for="FacultyEmail" class="form-control" readonly />
                                     <span asp-validation-for="FacultyEmail" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
@@ -57,9 +56,6 @@
                                     <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
