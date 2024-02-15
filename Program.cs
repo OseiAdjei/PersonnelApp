@@ -7,8 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<INSPService, NSPService>();
-builder.Services.AddScoped<IFacultyService, FacultyService>();
 builder.Services.AddScoped<ICollegesService, CollegesService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>

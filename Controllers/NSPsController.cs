@@ -9,12 +9,10 @@ namespace App.Controllers
     public class NSPsController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly INSPService _service;
 
-        public NSPsController(AppDbContext context, INSPService service)
+        public NSPsController(AppDbContext context)
         { 
             _context = context;
-            _service = service;
         }
         public async Task<IActionResult> Index()
         {
@@ -64,12 +62,10 @@ namespace App.Controllers
                 return View();
             }
         }
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
-                var nspDetails = await _service.GetByIdAsync(id);
 
-                if (nspDetails == null) return View("Empty");
-                return View(nspDetails);
         }
+
     }
 }
