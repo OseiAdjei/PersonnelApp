@@ -17,6 +17,7 @@ namespace App.Controllers
             var allDepartments = await _context.Department.ToListAsync();
             return View(allDepartments);
         }
+
         [HttpGet]
         public async Task<IActionResult> NewDepartment()
         {
@@ -27,9 +28,9 @@ namespace App.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> NewDepartment([Bind("DepartmentName,DepartmentLogoUrl,DepartmentHod,DepartmentDescription," +
+        public async Task<IActionResult> NewDepartment([Bind("DepartmentId,DepartmentName,DepartmentLogoUrl,DepartmentHod,DepartmentDescription," +
             "DepartmentEmail,FacultyId")] Department department)
-            {
+        {
             try
             {
                 var faculties = await _context.Faculty.ToListAsync();
@@ -45,7 +46,7 @@ namespace App.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorMessage = "AN error occured whilst trying to retrieve the list of Faculties";
+                ViewBag.ErrorMessage = "An error occured whilst trying to retrieve the list of Faculties";
                 return View(department);
             }
         }
@@ -60,7 +61,69 @@ namespace App.Controllers
             {
                 return NotFound();
             }
-            return View (department);
+            return View(department);
+        }
+        public async Task<IActionResult> Edit_Department(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var department = await _context.Department.FindAsync(id);
+            if (department == null)
+            {
+                return NotFound();
+            }
+
+            var faculties = await _context.Faculty.ToListAsync();
+            ViewData["Faculties"] = faculties;
+
+            return View(department);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit_Department(int id, [Bind("DepartmentId,DepartmentName,DepartmentLogoUrl,DepartmentHod,DepartmentDescription,DepartmentEmail,FacultyId")] Department department)
+        {
+            if (id != department.DepartmentId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(department);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DepartmentExists(department.DepartmentId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+
+            var faculties = await _context.Faculty.ToListAsync();
+            ViewData["Faculties"] = faculties;
+
+            return View(department);
+        }
+
+        private bool DepartmentExists(int id)
+        {
+            return _context.Department.Any(e => e.DepartmentId == id);
         }
     }
 }
+
+
+
