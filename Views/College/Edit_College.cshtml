@@ -1,0 +1,68 @@
+﻿@using App.Domain
+@model College
+
+@{
+    ViewData["Title"] = "Update College";
+}
+
+<div class="container mt-5">
+    <div class="col-md-9 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center offset-6">@ViewData["Title"]</h2>
+                <div class="row">
+                    <div class="col-md-7">
+                        <img src="/css/Collegedrctry.png" alt="Your Image" class="img-fluid rounded" style="width: 120%; height: auto;">
+                    </div>
+                    <div class="col-md-4 offset-0">
+                        <form asp-action="Edit_College">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group text-center">
+                                <div class="form-group">
+                                    <label asp-for="CollegeLogoUrl" class="control-label"></label>
+                                    <input asp-for="CollegeLogoUrl" class="form-control" />
+                                    <span asp-validation-for="CollegeLogoUrl" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CollegeName" class="control-label"></label>
+                                    <input asp-for="CollegeName" class="form-control" />
+                                    <span asp-validation-for="CollegeName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CollegeDescription" class="control-label"></label>
+                                    <input asp-for="CollegeDescription" class="form-control" />
+                                    <span asp-validation-for="CollegeDescription" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CollegeProvost" class="control-label"></label>
+                                    <input asp-for="CollegeProvost" class="form-control" />
+                                    <span asp-validation-for="CollegeProvost" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CollegeEmail" class="control-label"></label>
+                                    <input asp-for="CollegeEmail" class="form-control" />
+                                    <span asp-validation-for="CollegeEmail" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                                    <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#CollegeLogoUrl").on("change", function () {
+                // Assuming you want to set the preview image's source
+                var imageUrl = $(this).val();
+                $("#CollegeLogoUrlPreview").attr("src", imageUrl);
+            });
+        });
+    </script>
+}
