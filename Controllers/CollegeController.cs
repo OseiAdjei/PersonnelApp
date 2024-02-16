@@ -58,7 +58,7 @@ namespace App.Controllers
                 return View(college);
             }
 
-            await _service.Update(id, college);
+            await _service.UpdateAsync(id, college);
             return RedirectToAction(nameof(Index));
         }
     }
