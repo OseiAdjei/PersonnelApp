@@ -51,14 +51,24 @@ namespace App.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit_College(int id,[Bind("CollegeName,CollegeLogoUrl,CollegeDescription,CollegeProvost,CollegeEmail")] College college)
+        public async Task<IActionResult> Edit_College(int id,[Bind("CollegeName,CollegeLogoUrl,CollegeDescription,CollegeProvost,CollegeEmail")] College updatedcollege)
         {
             if (!ModelState.IsValid)
             {
-                return View(college);
+                return View(updatedcollege);
             }
+            var existCollege = await _service.GetByIdAsync(id);
+            if (existCollege == null)
+            {
+                return NotFound();
+            }
+            existCollege.CollegeName = updatedcollege.CollegeName;
+            existCollege.CollegeLogoUrl = updatedcollege.CollegeLogoUrl;
+            existCollege.CollegeDescription = updatedcollege.CollegeDescription;
+            existCollege.CollegeProvost = updatedcollege.CollegeProvost;
+            existCollege.CollegeEmail = updatedcollege.CollegeEmail;
 
-            await _service.UpdateAsync(id, college);
+            await _service.UpdateAsync(id, updatedcollege);
             return RedirectToAction(nameof(Index));
         }
     }

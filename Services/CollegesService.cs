@@ -32,11 +32,11 @@ namespace App.Services
             var result = await _context.College.FirstOrDefaultAsync(n => n.CollegeId == id);
             return result;
         }
-        public async Task<College> UpdateAsync(int id, College newCollege)
+        public async Task<College> UpdateAsync(int id, College updatedcollege)
         {
-            _context.Update(newCollege);
+            _context.Update(updatedcollege);
             await _context.SaveChangesAsync();
-            return newCollege;
+            return updatedcollege;
         }
     }
 }
