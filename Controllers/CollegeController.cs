@@ -41,5 +41,25 @@ namespace App.Controllers
             if (collegeDetails == null) return View("Empty");
             return View(collegeDetails);
         }
+
+        // Editing the details of a College
+        public async Task<IActionResult> Edit_College(int id)
+        {
+            var collegeDetails = await _service.GetByIdAsync (id);
+            if (collegeDetails == null) return NotFound();
+            return View(collegeDetails);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit_College(int id,[Bind("CollegeName,CollegeLogoUrl,CollegeDescription,CollegeProvost,CollegeEmail")] College college)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(college);
+            }
+
+            await _service.Update(id, college);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
