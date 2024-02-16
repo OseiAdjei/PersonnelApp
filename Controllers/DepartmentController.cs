@@ -25,8 +25,9 @@ namespace App.Controllers
 
             return View();
         }
+
         [HttpPost]
-        public async Task<IActionResult> NewDepartment([Bind("DepartmentName,DepartmnentLogoUrl,DepartmentHod,DepartmentDescription," +
+        public async Task<IActionResult> NewDepartment([Bind("DepartmentName,DepartmentLogoUrl,DepartmentHod,DepartmentDescription," +
             "DepartmentEmail,FacultyId")] Department department)
             {
             try
