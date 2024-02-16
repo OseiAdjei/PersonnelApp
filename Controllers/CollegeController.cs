@@ -68,7 +68,7 @@ namespace App.Controllers
             existCollege.CollegeProvost = updatedcollege.CollegeProvost;
             existCollege.CollegeEmail = updatedcollege.CollegeEmail;
 
-            await _service.UpdateAsync(id, updatedcollege);
+            await _service.UpdateAsync(id, existCollege);
             return RedirectToAction(nameof(Index));
         }
     }
