@@ -1,0 +1,88 @@
+﻿@using App.Domain
+@model Department
+
+@{
+    ViewData["Title"] = "Update Department";
+}
+
+
+<div class="container mt-5">
+    <div class="col-md-9 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center offset-6">@ViewData["Title"]</h2>
+                <div class="row">
+                    <div class="col-md-7">
+                        <img src="/css/Department.png" alt="Your Image" class="img-fluid rounded" style="width: 120%; height: auto;">
+                    </div>
+                    <div class="col-md-4 offset-0">
+                        <form asp-action="Edit_Department">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                @{
+                                    var faculties = ViewData["Faculties"] as IEnumerable<Faculty>;
+                                }
+                                @if (faculties.Count() != 0)
+                                {
+                                    <select asp-for="FacultyId" asp-items="@(new SelectList(faculties, "FacultyId","FacultyName"))" class="form-control">
+                                        <option value="">-- Select Faculty --</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <p class="text-danger">@ViewBag.ErrorMessage</p>
+                                }
+                                <span asp-validation-for="FacultyId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentName" class="control-label"></label>
+                                <input asp-for="DepartmentName" class="form-control" />
+                                <span asp-validation-for="DepartmentName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentLogoUrl" class="control-label"></label>
+                                <input asp-for="DepartmentLogoUrl" class="form-control" />
+                                <span asp-validation-for="DepartmentLogoUrl" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentDescription" class="control-label"></label>
+                                <input asp-for="DepartmentDescription" class="form-control" />
+                                <span asp-validation-for="DepartmentDescription" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentHod" class="control-label"></label>
+                                <input asp-for="DepartmentHod" class="form-control" />
+                                <span asp-validation-for="DepartmentHod" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DepartmentEmail" class="control-label"></label>
+                                <input asp-for="DepartmentEmail" class="form-control" />
+                                <span asp-validation-for="DepartmentEmail" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                                <a class="btn btn-outline-secondary" asp-action="Index">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 16 16">
+                                        <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4m2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A2 2 0 0 0 8 6c-.532 0-1.016.208-1.375.547M14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0" />
+                                    </svg> Show all
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#DepartmentLogoUrl").on("change", function () {
+                // Assuming you want to set the preview image's source
+                var imageUrl = $(this).val();
+                $("#DepartmentLogoUrlPreview").attr("src", imageUrl);
+            });
+        });
+    </script>
+}
