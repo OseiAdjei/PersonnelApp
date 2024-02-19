@@ -84,43 +84,27 @@ namespace App.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit_Department(int id, [Bind("DepartmentId,DepartmentName,DepartmentLogoUrl,DepartmentHod,DepartmentDescription,DepartmentEmail,FacultyId")] Department department)
+        public async Task<IActionResult> Edit_Department(int id, [Bind("DepartmentId,DepartmentName,DepartmentLogoUrl,DepartmentHod,DepartmentDescription,DepartmentEmail,FacultyId")] Department updatedDepartment)
         {
-            if (id != department.DepartmentId)
+            if (!ModelState.IsValid)
+            {
+                return View(updatedDepartment);
+            }
+
+            var existDepartment = await _context.Department.FindAsync(id);
+            if (existDepartment == null)
             {
                 return NotFound();
             }
+            existDepartment.DepartmentName = updatedDepartment.DepartmentName;
+            existDepartment.DepartmentHod = updatedDepartment.DepartmentHod;
+            existDepartment.DepartmentDescription = updatedDepartment.DepartmentDescription;
+            existDepartment.DepartmentEmail = updatedDepartment.DepartmentEmail;
+            existDepartment.DepartmentLogoUrl = updatedDepartment.DepartmentLogoUrl;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(department);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DepartmentExists(department.DepartmentId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-
-            var faculties = await _context.Faculty.ToListAsync();
-            ViewData["Faculties"] = faculties;
-
-            return View(department);
-        }
-
-        private bool DepartmentExists(int id)
-        {
-            return _context.Department.Any(e => e.DepartmentId == id);
+            _context.Department.Update(existDepartment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

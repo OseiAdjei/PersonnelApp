@@ -91,10 +91,43 @@ namespace App.Controllers
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Edit_Faculty(int id, [Bind("FacultyId,FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail,CollegeId")] Faculty faculty)
+        public async Task<IActionResult> Edit_Faculty(int id, [Bind("FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail,CollegeId")] Faculty faculty)
         {
+            if (id != faculty.FacultyId)
+            {
+                return NotFound();
+            }
 
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(faculty);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!FacultyExists(faculty.FacultyId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
+
+            var colleges = await _context.College.ToListAsync();
+            ViewData["Colleges"] = colleges;
+
+            return View(faculty);
+        }
+
+        private bool FacultyExists(int id)
+        {
+            return _context.Faculty.Any(e => e.FacultyId == id);
         }
     }
-
 }
