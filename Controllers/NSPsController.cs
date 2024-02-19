@@ -77,5 +77,53 @@ namespace App.Controllers
 
             return View(nsp);
         }
+
+        public async Task<IActionResult> Edit_Personnel(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var nsp = await _context.Nsp.FindAsync(id);
+            if (nsp == null)
+            {
+                return NotFound();
+            }
+            var colleges = await _context.College.ToListAsync();
+            ViewData["Colleges"] = colleges;
+
+            var departments = await _context.Department.ToListAsync();
+            ViewData["Departments"] = departments;
+
+            var faculties = await _context.Faculty.ToListAsync();
+            ViewData["Faculties"] = faculties;
+
+            return View(nsp);
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Edit_Personnel(int id, [Bind("NspId,NspName,NspNumber,NspPicUrl,NspEmail,NspPhone,NspBio")]Nsp updatedNsp)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(updatedNsp);
+            }
+            var existNsp = await _context.Nsp.FindAsync(id);
+            if (existNsp == null)
+            {
+                return NotFound();
+            }
+            existNsp.NspName = updatedNsp.NspName;
+            existNsp.NspNumber = updatedNsp.NspNumber;
+            existNsp.NspBio = updatedNsp.NspBio;
+            existNsp.NspPhone = updatedNsp.NspPhone;
+            existNsp.NspPicUrl = updatedNsp.NspPicUrl;
+            existNsp.NspEmail = updatedNsp.NspEmail;
+
+            _context.Nsp.Update(existNsp);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
