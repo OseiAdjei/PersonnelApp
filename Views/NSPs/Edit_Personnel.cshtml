@@ -1,0 +1,120 @@
+﻿@using App.Domain
+@model Nsp
+
+@{
+    ViewData["Title"] = "Update Personnel";
+}
+
+<div class="container mt-5">
+    <div class="col-md-9 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center offset-6">@ViewData["Title"]</h2>
+                <div class="row">
+                    <div class="col-md-7">
+                        <img src="/css/KNUSTNSP.png" alt="Your Image" class="img-fluid rounded" style="width: 120%; height: auto;">
+                    </div>
+                    <div class="col-md-4 offset-0">
+                        <form asp-action="Edit_Personnel">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                @{
+                                    var colleges = ViewData["Colleges"] as IEnumerable<College>;
+                                }
+                                @if (colleges.Count() != 0)
+                                {
+                                    <select asp-for="CollegeId" asp-items="@(new SelectList(colleges, "CollegeId","CollegeName"))" class="form-control">
+                                        <option value="">-- Select College --</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <p class="text-danger">@ViewBag.ErrorMessage</p>
+                                }
+                                <span asp-validation-for="CollegeId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                @{
+                                    var faculties = ViewData["Faculties"] as IEnumerable<Faculty>;
+                                }
+                                @if (faculties.Count() != 0)
+                                {
+                                    <select asp-for="FacultyId" asp-items="@(new SelectList(faculties, "FacultyId","FacultyName"))" class="form-control">
+                                        <option value="">-- Select Faculty --</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <p class="text-danger">@ViewBag.ErrorMessage</p>
+                                }
+                                <span asp-validation-for="FacultyId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                @{
+                                    var departments = ViewData["Departments"] as IEnumerable<Department>;
+                                }
+                                @if (departments.Count() != 0)
+                                {
+                                    <select asp-for="DepartmentId" asp-items="@(new SelectList(departments, "DepartmentId","DepartmentName"))" class="form-control">
+                                        <option value="">-- Select Department --</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <p class="text-danger">@ViewBag.ErrorMessage</p>
+                                }
+                                <span asp-validation-for="FacultyId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NspNumber" class="control-label"></label>
+                                <input asp-for="NspNumber" class="form-control" />
+                                <span asp-validation-for="NspNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NspPicUrl" class="control-label"></label>
+                                <input asp-for="NspPicUrl" class="form-control" />
+                                <span asp-validation-for="NspPicUrl" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NspName" class="control-label"></label>
+                                <input asp-for="NspName" class="form-control" />
+                                <span asp-validation-for="NspName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NspBio" class="control-label"></label>
+                                <input asp-for="NspBio" class="form-control" />
+                                <span asp-validation-for="NspBio" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NspEmail" class="control-label"></label>
+                                <input asp-for="NspEmail" class="form-control" />
+                                <span asp-validation-for="NspEmail" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NspPhone" class="control-label"></label>
+                                <input asp-for="NspPhone" class="form-control" />
+                                <span asp-validation-for="NspPhone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                                <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#NspPicUrl").on("change", function () {
+                // Assuming you want to set the preview image's source
+                var imageUrl = $(this).val();
+                $("#NspPicUrlPreview").attr("src", imageUrl);
+            });
+        });
+    </script>
+}
