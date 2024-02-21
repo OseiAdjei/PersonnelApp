@@ -16,9 +16,11 @@ namespace App.Services
              await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.College.FirstOrDefaultAsync(n=>n.CollegeId == id);
+            _context.College.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<College>> GetAllAsync()

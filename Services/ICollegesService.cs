@@ -8,6 +8,6 @@ namespace App.Services
         Task<College> GetByIdAsync(int CollegeId);
         Task AddAsync(College college);
         Task<College> UpdateAsync (int  CollegeId, College updatedcollege);
-        void Delete (int CollegeId);
+        Task DeleteAsync (int CollegeId);
     }
 }

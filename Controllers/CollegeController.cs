@@ -71,5 +71,23 @@ namespace App.Controllers
             await _service.UpdateAsync(id, existCollege);
             return RedirectToAction(nameof(Index));
         }
+
+        // Delete the college with the Id
+        public async Task<IActionResult> Delete_College(int id)
+        {
+            var collegeDetails = await _service.GetByIdAsync(id);
+            if (collegeDetails == null) return NotFound();
+            return View(collegeDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var collegeDetails = await _service.GetByIdAsync(id);
+            if (collegeDetails == null) return NotFound();
+           
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
