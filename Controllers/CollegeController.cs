@@ -81,6 +81,7 @@ namespace App.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var collegeDetails = await _service.GetByIdAsync(id);
