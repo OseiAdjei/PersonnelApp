@@ -75,8 +75,10 @@ namespace App.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return NotFound();   
             }
+            var colleges = await _context.College.ToListAsync();
+            ViewData["Colleges"] = colleges;
 
             var faculty = await _context.Faculty
                 .Include(f => f.College) // Include related college
