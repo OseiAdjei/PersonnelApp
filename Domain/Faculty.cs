@@ -29,10 +29,10 @@ namespace App.Domain
         public string FacultyEmail { get; set; }
 
         //Relationships
-        public int CollegeId { get; set; }
+        public int CollegeId { get; set; }   
         public College? College { get; set; }
         public List<Nsp>? Nsps { get; set; }
-
+  
 
     }
 }
