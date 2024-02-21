@@ -34,7 +34,7 @@
                         <input asp-for="CollegeEmail" class="form-control" readonly />
                     </div>
                     <div class="form-group">
-                        <form action="Delete">
+                        <form asp-action="Delete">
                             <input type="hidden" asp-for="CollegeId" />
                             <input type="submit" value="Confirm" class="btn btn-danger float-right" />
                         <a class="btn btn-outline-secondary" asp-action="Index">
