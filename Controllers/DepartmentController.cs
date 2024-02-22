@@ -106,39 +106,43 @@ namespace App.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Delete_Department(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Delete_Department(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var faculties = await _context.Faculty.ToListAsync();
+        //    ViewData["Faculties"] = faculties;
 
-            var department = await _context.Department.FindAsync(id);
-            if (department == null)
-            {
-                return NotFound();
-            }
+        //    var department = await _context.Department.FindAsync(id);
+        //    if (department == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(department);
-        }
+        //    return View(department);
+        //}
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var department = await _context.Department.FindAsync(id);
-            if (department == null)
-            {
-                return NotFound();
-            }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var faculties = await _context.Faculty.ToListAsync();
+        //    ViewData["Faculties"] = faculties;
 
-            _context.Department.Remove(department);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+        //    var department = await _context.Department.FindAsync(id);
+        //    if (department == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    _context.Department.Remove(department);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
         }
 
     }
-}
 
 
 

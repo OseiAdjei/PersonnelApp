@@ -30,7 +30,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "College",
+      "launchUrl": "Department",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
