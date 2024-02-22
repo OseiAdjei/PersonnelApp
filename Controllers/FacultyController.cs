@@ -93,43 +93,26 @@ namespace App.Controllers
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Edit_Faculty(int id, [Bind("FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail,CollegeId")] Faculty faculty)
+        public async Task<IActionResult> Edit_Faculty(int id, [Bind("FacultyId,FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail,CollegeId")] Faculty updatedfaculty)
         {
-            if (id != faculty.FacultyId)
+            if(!ModelState.IsValid)
+            {
+                return View(updatedfaculty);
+            }    
+            var existfaculty = await _context.Faculty.FindAsync(id);
+            if (existfaculty == null)
             {
                 return NotFound();
             }
+            existfaculty.FacultyId = updatedfaculty.FacultyId;
+            existfaculty.FacultyDean = updatedfaculty.FacultyDean;
+            existfaculty.FacultyName = updatedfaculty.FacultyName;
+            existfaculty.FacultyEmail = updatedfaculty.FacultyEmail;
+            existfaculty.FacultyDescription = updatedfaculty.FacultyDescription;
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(faculty);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FacultyExists(faculty.FacultyId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-            }
-
-            var colleges = await _context.College.ToListAsync();
-            ViewData["Colleges"] = colleges;
-
-            return View(faculty);
-        }
-
-        private bool FacultyExists(int id)
-        {
-            return _context.Faculty.Any(e => e.FacultyId == id);
+            _context.Faculty.Update(existfaculty);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index)); 
         }
 
         public async Task<IActionResult> Delete_Faculty(int? id)
