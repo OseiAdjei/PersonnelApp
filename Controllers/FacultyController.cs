@@ -114,39 +114,5 @@ namespace App.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index)); 
         }
-
-        public async Task<IActionResult> Delete_Faculty(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var faculty = await _context.Faculty.FindAsync(id);
-            if (faculty == null)
-            {
-                return NotFound();
-            }
-            var colleges = await _context.College.ToListAsync();
-            ViewData["Colleges"] = colleges;
-            return View(faculty);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
-        {
-            var colleges = _context.College.ToListAsync();
-            ViewData["Colleges"] = colleges;
-
-            var faculty = await _context.Faculty.FindAsync(id);
-            if (faculty==null)
-            {
-                return NotFound();
-            }
-            
-            _context.Faculty.Remove(faculty);
-            await _context.SaveChangesAsync();
-            return View(faculty);
-        }
     }
 }
