@@ -125,5 +125,51 @@ namespace App.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Delete_Personnel (int? id)
+        { 
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var nsp = await _context.Nsp.FindAsync(id);
+            if (nsp == null)
+            {
+                return NotFound();
+            }
+            var colleges = await _context.College.ToListAsync();
+            ViewData["Colleges"] = colleges;
+
+            var departments = await _context.Department.ToListAsync();
+            ViewData["Departments"] = departments;
+
+            var faculties = await _context.Faculty.ToListAsync();
+            ViewData["Faculties"] = faculties;
+
+            return View(nsp);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int? id)
+        {
+            var colleges = await _context.College.ToListAsync();
+            ViewData["Colleges"] = colleges;
+
+            var departments = await _context.Department.ToListAsync();
+            ViewData["Departments"] = departments;
+
+            var faculties = await _context.Faculty.ToListAsync();
+            ViewData["Faculties"] = faculties;
+
+            var nsp = await _context.Nsp.FindAsync(id);
+            if (nsp==null)
+            {
+                return NotFound();
+            }
+
+            _context.Nsp.Remove(nsp);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
