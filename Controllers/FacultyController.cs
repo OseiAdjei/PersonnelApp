@@ -71,40 +71,42 @@ namespace App.Controllers
 
             return View(faculty);
         }
+
+        [HttpGet]
         public async Task<IActionResult> Edit_Faculty(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var colleges = await _context.College.ToListAsync();
-            ViewData["Colleges"] = colleges;
-
-            var faculty = await _context.Faculty
-                .Include(f => f.College) // Include related college
-                .FirstOrDefaultAsync(m => m.FacultyId == id);
-
+            var faculty = await _context.Faculty.FindAsync(id);
             if (faculty == null)
             {
                 return NotFound();
             }
 
-            return View(faculty);
+            var colleges = await _context.College.ToListAsync();
+            ViewData["Colleges"] = colleges;
+
+            var faculty1 = await _context.Faculty
+                .Include(f => f.College) // Include related college
+                .FirstOrDefaultAsync(m => m.FacultyId == id);
+
+            return View(faculty1);
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Edit_Faculty(int id, [Bind("FacultyId,FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail,CollegeId")] Faculty updatedfaculty)
+        public async Task<IActionResult> Edit_Faculty(int id, [Bind("FacultyLogoUrl,FacultyName,FacultyDean,FacultyDescription,FacultyEmail,CollegeId")] Faculty updatedfaculty)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(updatedfaculty);
-            }    
+            }
             var existfaculty = await _context.Faculty.FindAsync(id);
             if (existfaculty == null)
             {
                 return NotFound();
             }
-            existfaculty.FacultyId = updatedfaculty.FacultyId;
             existfaculty.FacultyDean = updatedfaculty.FacultyDean;
             existfaculty.FacultyName = updatedfaculty.FacultyName;
             existfaculty.FacultyEmail = updatedfaculty.FacultyEmail;
@@ -112,7 +114,9 @@ namespace App.Controllers
 
             _context.Faculty.Update(existfaculty);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index)); 
+            return RedirectToAction(nameof(Index));
         }
     }
 }
+       
+    
