@@ -26,7 +26,7 @@ namespace App.Controllers
         public async Task<IActionResult> NewFaculty()
         {
             var colleges = await _context.College.ToListAsync();
-            ViewData["olleges"] = colleges;
+            ViewData["Colleges"] = colleges;
 
             return View();
         }
