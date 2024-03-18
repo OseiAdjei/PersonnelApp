@@ -50,7 +50,7 @@ namespace App.Migrations
 
                     b.HasKey("CollegeId");
 
-                    b.ToTable("College");
+                    b.ToTable("College", (string)null);
                 });
 
             modelBuilder.Entity("App.Domain.Department", b =>
@@ -86,7 +86,7 @@ namespace App.Migrations
 
                     b.HasIndex("FacultyId");
 
-                    b.ToTable("Department");
+                    b.ToTable("Department", (string)null);
                 });
 
             modelBuilder.Entity("App.Domain.Faculty", b =>
@@ -123,7 +123,7 @@ namespace App.Migrations
 
                     b.HasIndex("CollegeId");
 
-                    b.ToTable("Faculty");
+                    b.ToTable("Faculty", (string)null);
                 });
 
             modelBuilder.Entity("App.Domain.Nsp", b =>
@@ -176,7 +176,7 @@ namespace App.Migrations
 
                     b.HasIndex("FacultyId");
 
-                    b.ToTable("Nsp");
+                    b.ToTable("Nsp", (string)null);
                 });
 
             modelBuilder.Entity("App.Domain.Department", b =>

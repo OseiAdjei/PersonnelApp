@@ -16,6 +16,7 @@ namespace App.Controllers
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index()
         {
             var allFaculties = await _context.Faculty.ToListAsync();

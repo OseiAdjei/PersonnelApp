@@ -1,4 +1,5 @@
-﻿using App.Domain;
+﻿
+using App.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,7 +29,8 @@ namespace App.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> NewDepartment([Bind("DepartmentId,DepartmentName,DepartmentLogoUrl,DepartmentHod,DepartmentDescription," +
+        public async Task<IActionResult> NewDepartment([Bind("DepartmentId,DepartmentName,DepartmentLogoUrl," +
+            "DepartmentHod,DepartmentDescription," +
             "DepartmentEmail,FacultyId")] Department department)
         {
             try
