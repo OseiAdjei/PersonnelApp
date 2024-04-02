@@ -67,41 +67,46 @@
                             </div>
                             <div class="control-section">
                                 <div class="control_wrapper TextBox-control-section">
-                                    <ejs-textbox id="NspNumber" placeholder="Personnel Number" value="NspNumber"></ejs-textbox>
+                                    <ejs-textbox id="NspNumber" placeholder="NSSGST*******" value="NspNumber"></ejs-textbox>
                                     <span asp-validation-for="NspNumber" class="text-danger"></span>
 
                                 </div>
                             </div>
-                        <div class="form-group">
-                            <label asp-for="NspNumber" class="control-label"></label>
-                            <input asp-for="NspNumber" class="form-control" />
-                            <span asp-validation-for="NspNumber" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="NspPicUrl" class="control-label"></label>
-                            <input asp-for="NspPicUrl" class="form-control" />
-                            <span asp-validation-for="NspPicUrl" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="NspName" class="control-label"></label>
-                            <input asp-for="NspName" class="form-control" />
-                            <span asp-validation-for="NspName" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="NspBio" class="control-label"></label>
-                            <input asp-for="NspBio" class="form-control" />
-                            <span asp-validation-for="NspBio" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="NspEmail" class="control-label"></label>
-                            <input asp-for="NspEmail" class="form-control" />
-                            <span asp-validation-for="NspEmail" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="NspPhone" class="control-label"></label>
-                            <input asp-for="NspPhone" class="form-control" />
-                            <span asp-validation-for="NspPhone" class="text-danger"></span>
-                        </div>
+                            <div class="control-section">
+                                <div class="control_wrapper TextBox-control-section">
+                                    <ejs-textbox id="NspPicUrl" placeholder="Paste photo link" value="NspPicUrl"></ejs-textbox>
+                                    <span asp-validation-for="NspPicUrl" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="control-section">
+                                <div class="control_wrapper TextBox-control-section">
+                                    <ejs-textbox id="NspName" placeholder="Enter your name" value="NspName"></ejs-textbox>
+                                    <span asp-validation-for="NspName" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="control-section">
+                                <div class="control_wrapper TextBox-control-section">
+                                    <ejs-textbox id="NspBio" placeholder="Current position as personnel" value="NspBio"></ejs-textbox>
+                                    <span asp-validation-for="NspBio" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="control-section">
+                                <div class="control_wrapper TextBox-control-section">
+                                    <ejs-textbox id="NspEmail" placeholder="Enter your email address" value="NspEmail"></ejs-textbox>
+                                    <span asp-validation-for="NspEmail" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="control-section">
+                                <div class="control_wrapper TextBox-control-section">
+                                    <ejs-textbox id="NspPhone" placeholder="Input last nine digits of phone numbers" value="NspPhone"></ejs-textbox>
+                                    <span asp-validation-for="NspPhone" class="text-danger"></span>
+
+                                </div>
+                            </div>
                         <div class="form-group">
                             <input type="submit" value="Create" class="btn btn-outline-success float-right" />
                             <a class="btn btn-outline-secondary" asp-action="Index"> Show all </a>
